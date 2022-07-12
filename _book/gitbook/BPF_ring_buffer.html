@@ -1,0 +1,695 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>BPF_ring_buffer · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="BPF_program.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Getting_started.html">
+            
+                <a href="Getting_started.html">
+            
+                    
+                    Getting_started
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="Prerequisites.html">
+            
+                <a href="Prerequisites.html">
+            
+                    
+                    Prerequisites
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="Install.md">
+            
+                <span>
+            
+                    
+                    Install
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="Building.html">
+            
+                <a href="Building.html">
+            
+                    
+                    Building
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2" data-path="Binary_version.md">
+            
+                <span>
+            
+                    
+                    Binary_version
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="Config_setting.md">
+            
+                <span>
+            
+                    
+                    Config_setting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="Trouble_shooting.html">
+            
+                <a href="Trouble_shooting.html">
+            
+                    
+                    Trouble_shooting
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    [Tutorials]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="Direct_io_trace.md">
+            
+                <span>
+            
+                    
+                    Direct_io_trace
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="write_pwrite64.html">
+            
+                <a href="write_pwrite64.html">
+            
+                    
+                    write/pwrite64
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" >
+            
+                <span>
+            
+                    
+                    [read/pread64]
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" >
+            
+                <span>
+            
+                    
+                    [Gather_io]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" >
+            
+                <span>
+            
+                    
+                    [writev/pwritev/pwritev2]
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="Fua.md">
+            
+                <span>
+            
+                    
+                    Fua
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" >
+            
+                <span>
+            
+                    
+                    [Memeory_mapping]
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    [Performance_analysis]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    [Unit_test]
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    [T]
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    [Development]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="SubModule.html">
+            
+                <a href="SubModule.html">
+            
+                    
+                    SubModule
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" >
+            
+                <span>
+            
+                    
+                    [Io_event]
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="Vfs_layer.html">
+            
+                <a href="Vfs_layer.html">
+            
+                    
+                    Vfs_layer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="Ext4_write.html">
+            
+                <a href="Ext4_write.html">
+            
+                    
+                    Ext4_write
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="Block_io_layer.md">
+            
+                <span>
+            
+                    
+                    Block_io_layer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="Log_record.md">
+            
+                <span>
+            
+                    
+                    Log_record
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="Locked_memory_limits.html">
+            
+                <a href="Locked_memory_limits.html">
+            
+                    
+                    Locked_memory_limits
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="Libbpf_log.html">
+            
+                <a href="Libbpf_log.html">
+            
+                    
+                    Libbpf_log
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="BPF_maps.html">
+            
+                <a href="BPF_maps.html">
+            
+                    
+                    BPF_maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="BPF_program.html">
+            
+                <a href="BPF_program.html">
+            
+                    
+                    BPF_programs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.11" data-path="BPF_ring_buffer.html">
+            
+                <a href="BPF_ring_buffer.html">
+            
+                    
+                    BPF_ring_buffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >BPF_ring_buffer</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="bpfringbuffer">BPF_ring_buffer</h1>
+<p>&#x73AF;&#x5F62;&#x7F13;&#x51B2;&#x533A;<code>bpf_ring_buffer</code>&#x662F;&#x4E00;&#x79CD;&#x65B0;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x89E3;&#x51B3;&#x4E86;BPF perf&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5F53;&#x524D;bpf&#x7A0B;&#x5E8F;&#x4ECE;kernel&#x628A;&#x6570;&#x636E;&#x53D1;&#x9001;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x4E00;&#x4E9B;&#x7F3A;&#x9677;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x7387;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x548C;&#x8F93;&#x5165;map&#x7684;&#x4E8B;&#x4EF6;&#x91CD;&#x65B0;&#x6392;&#x5E8F;&#x7684;&#x95EE;&#x9898;</p>
+<p><code>ring_buffer</code>&#x6EE1;&#x8DB3;&#x5BF9;&#x4E8E;<code>perf_buffer</code>&#x7684;&#x517C;&#x5BB9;&#x6027;&#xFF0C;&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x65B0;&#x7684;<code>reserve/commit</code>&#x63A5;&#x53E3;</p>
+<h2 id="bpf-ringbuf-vs-bpf-perfbuf">BPF ringbuf vs BPF perfbuf</h2>
+<p>&#x5F53;bpf&#x7A0B;&#x5E8F;&#x6536;&#x96C6;&#x5230;&#x9700;&#x8981;&#x53D1;&#x9001;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4E00;&#x822C;&#x9009;&#x62E9;&#x4F7F;&#x7528;<code>perfbuf</code>&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x8FD9;&#x79CD;&#x7F13;&#x51B2;&#x662F;&#x5BF9;&#x4E8E;<code>per_cpu</code>&#x5355;&#x72EC;&#x5B9A;&#x4E49;&#xFF0C;&#x5B58;&#x5728;&#x4E24;&#x4E2A;&#x4E3B;&#x8981;&#x7684;&#x7F3A;&#x70B9;&#xFF0C;&#x5206;&#x522B;&#x662F;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x6548;&#x7387;&#x4F4E;&#x548C;cpu&#x4E4B;&#x95F4;&#x540C;&#x6B65;&#x5BFC;&#x81F4;&#x7684;&#x4E8B;&#x4EF6;&#x91CD;&#x6392;</p>
+<p>&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#xFF0C;Linux5.8&#x4E4B;&#x540E;&#x7684;bpf&#x652F;&#x6301;&#x4E86;&#x4E00;&#x79CD;&#x65B0;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;<code>bpf_ringbuff</code>&#xFF0C;&#x73AF;&#x5F62;&#x7F13;&#x51B2;&#x533A;&#x662F;&#x4E00;&#x4E2A;&#x591A;&#x751F;&#x4EA7;&#x8005;&#x5355;&#x6D88;&#x8D39;&#x8005;<code>(MPSC)</code>&#x961F;&#x5217;,&#x53EF;&#x4EE5;&#x5728;&#x591A;&#x4E2A;cpu&#x4E4B;&#x95F4;&#x5171;&#x4EAB;</p>
+<p><code>bpf_ring_buff</code>&#x4FDD;&#x6301;&#x4E86;&#x4E4B;&#x524D;&#x7684;&#x4E3B;&#x8981;&#x7279;&#x6027;</p>
+<ul>
+<li>[1]&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#x7684;&#x6570;&#x636E;&#x8BB0;&#x5F55;</li>
+<li>[2]&#x901A;&#x8FC7;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x5B9E;&#x73B0;&#x4ECE;<code>user_space</code>&#x7684;&#x6570;&#x636E;&#x8BFB;&#x53D6;&#xFF0C;&#x65E0;&#x9700;&#x989D;&#x5916;&#x7684;&#x5185;&#x5B58;&#x590D;&#x5236;&#x548C;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;</li>
+<li>[3]&#x5BF9;&#x4E24;&#x4E2A;<code>epoll_notification</code>&#x90FD;&#x652F;&#x6301;</li>
+<li>[4]&#x6700;&#x5C0F;&#x7EDD;&#x5BF9;&#x5EF6;&#x8FDF;&#x7684;<code>busy_loop</code></li>
+</ul>
+<p>&#x5728;&#x4EE5;&#x4E0B;&#x95EE;&#x9898;&#x4E0A;&#x505A;&#x4E86;&#x4F18;&#x5316;</p>
+<ul>
+<li>[1]&#x5185;&#x5B58;&#x8D1F;&#x8F7D;</li>
+<li>[2]&#x6570;&#x636E;&#x6392;&#x5E8F;</li>
+<li>[3]&#x989D;&#x5916;&#x7684;&#x5185;&#x5B58;&#x62F7;&#x8D1D;&#x5F00;&#x9500;</li>
+</ul>
+<h2 id="&#x5185;&#x5B58;&#x8D1F;&#x8F7D;memory-overhead">&#x5185;&#x5B58;&#x8D1F;&#x8F7D;(Memory overhead)</h2>
+<p><code>bpf_perfbuf</code>&#x662F;<code>per_cpu</code>&#x7684;&#x673A;&#x5236;&#xFF0C;&#x56E0;&#x6B64;&#x5728;<a href="Locked_memory_limits.html">&#x9650;&#x5236;&#x5185;&#x5B58;</a>&#x63D0;&#x5230;&#x4E86;<code>libbpf</code>&#x9700;&#x8981;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#x5185;&#x5B58;&#x8D44;&#x6E90;&#x7684;&#x4E0A;&#x9650;&#xFF0C;&#x4F46;&#x4F9D;&#x7136;&#x9700;&#x8981;&#x4E3A;&#x6BCF;&#x4E2A;cpu&#x90FD;&#x5206;&#x914D;&#x8DB3;&#x591F;&#x5927;&#x5C0F;&#x7684;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x8FD9;&#x9700;&#x8981;&#x5BF9;&#x4E8B;&#x4EF6;&#x7684;&#x5468;&#x671F;&#x6027;&#x548C;&#x6CE2;&#x52A8;&#x6027;&#x505A;&#x51FA;&#x8DB3;&#x591F;&#x7A0B;&#x5EA6;&#x7684;&#x9884;&#x7559;&#xFF0C;&#x56E0;&#x6B64;&#x8981;&#x4E48;&#x56E0;&#x4E3A;&#x8FC7;&#x5EA6;&#x5B89;&#x5168;&#x800C;&#x9020;&#x6210;&#x4E86;&#x8D44;&#x6E90;&#x6D6A;&#x8D39;&#xFF0C;&#x8981;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x627F;&#x62C5;&#x6570;&#x636E;&#x4E22;&#x5931;</p>
+<p><code>BPF_ringbuf</code>&#x5728;&#x6240;&#x6709;cpu&#x4E4B;&#x95F4;&#x5171;&#x4EAB;&#xFF0C;&#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x5927;&#x7684;&#x516C;&#x5171;&#x7F13;&#x51B2;&#x533A;&#x6765;&#x5904;&#x7406;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;,&#x4E0E;<code>BPF perfbuf</code>&#x76F8;&#x6BD4;&#xFF0C;&#x66F4;&#x5927;&#x7684;&#x7F13;&#x51B2;&#x533A;&#x53EF;&#x4EE5;&#x66F4;&#x597D;&#x7684;&#x5904;&#x7406;&#x6CE2;&#x52A8;&#x6027;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x964D;&#x4F4E;<code>RAM</code>&#x5F00;&#x9500;</p>
+<p>&#x6BD4;&#x5982;&#x5F53;cpu&#x6570;&#x91CF;&#x62D3;&#x5C55;&#xFF0C;<code>bpf_ringbuff</code>&#x5C31;&#x4E0D;&#x4E00;&#x5B9A;&#x9700;&#x8981;&#x7EBF;&#x6027;&#x7684;&#x589E;&#x52A0;&#x5206;&#x914D;</p>
+<h2 id="&#x6570;&#x636E;&#x6392;&#x5E8F;event-ordering">&#x6570;&#x636E;&#x6392;&#x5E8F;(Event ordering)</h2>
+<p>&#x5982;&#x679C;<code>BPF</code>&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5FC5;&#x987B;&#x8DDF;&#x8E2A;&#x76F8;&#x5173;&#x4E8B;&#x4EF6;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x8FDB;&#x7A0B;&#x542F;&#x52A8;&#x548C;&#x9000;&#x51FA;&#x3001;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E8B;&#x4EF6;,io&#x4E0B;&#x53D1;&#x7B49;&#xFF0C;&#x4E8B;&#x4EF6;&#x7684;&#x6B63;&#x786E;&#x6392;&#x5E8F;&#x5C31;&#x5F88;&#x91CD;&#x8981;
+&#x5BF9;&#x4E8E;<code>BPF_perfbuf</code>&#xFF0C;&#x5982;&#x679C;&#x76F8;&#x5173;&#x4E8B;&#x4EF6;&#x5728;&#x4E0D;&#x540C;&#x7684; <code>CPU</code>&#x4E0A;&#x5FEB;&#x901F;&#x8FDE;&#x7EED;&#x53D1;&#x751F;&#xFF0C;&#x5B83;&#x4EEC;&#x53EF;&#x80FD;&#x4F1A;&#x4E71;&#x5E8F;&#x4F20;&#x9012;,&#x8FD9;&#x53C8;&#x662F;&#x7531;&#x4E8E;<code>BPF_perfbuf</code>&#x7684;<code>per-CPU</code>&#x6027;&#x8D28;</p>
+<p>&#x4F8B;&#x5982;&#x5BF9;&#x4E8E;&#x8FDB;&#x7A0B;&#x7684;<code>fork/exec/exit</code>&#x8FDB;&#x884C;&#x8FFD;&#x8E2A;&#xFF0C;&#x4F46;&#x662F;<code>fork/exec/exit</code>&#x7ECF;&#x5E38;&#x4F1A;&#x53D1;&#x751F;&#x8DE8;cpu&#x7684;&#x5207;&#x6362;&#xFF0C;&#x800C;&#x4E14;&#x662F;&#x975E;&#x5E38;&#x5FEB;&#x901F;&#x7684;&#x8FDE;&#x7EED;&#x8C03;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x6B63;&#x5E38;&#x7684;&#x628A;&#x8BB0;&#x5F55;&#x53D1;&#x9001;&#x5230;<code>bpf_perfbuf</code>&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x5EFA;&#x7ACB;&#x903B;&#x8F91;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;&#x4F7F;&#x89C2;&#x6D4B;&#x95EE;&#x9898;&#x53D8;&#x5F97;&#x590D;&#x6742;</p>
+<p>&#x5F97;&#x76CA;&#x4E8E;<code>ringbuff</code>&#x7684;&#x65B0;&#x7279;&#x6027;&#xFF0C;&#x4E8B;&#x4EF6;&#x5171;&#x4EAB;&#x540C;&#x4E00;&#x4E2A;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x8FD9;&#x5C06;&#x7B80;&#x5316;&#x5904;&#x7406;&#x903B;&#x8F91;</p>
+<h2 id="&#x989D;&#x5916;&#x7684;&#x5185;&#x5B58;&#x62F7;&#x8D1D;&#x5F00;&#x9500;wasted-work-and-extra-data-copying">&#x989D;&#x5916;&#x7684;&#x5185;&#x5B58;&#x62F7;&#x8D1D;&#x5F00;&#x9500;(Wasted work and extra data copying)</h2>
+<p>&#x57FA;&#x4E8E;<code>bpf_perfbuf</code>&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF0C;bpf&#x7A0B;&#x5E8F;&#x5FC5;&#x987B;&#x5148;&#x51C6;&#x5907;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6837;&#x672C;&#xFF0C;&#x7136;&#x540E;&#x590D;&#x5236;&#x5230;<code>perbuf</code>&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x518D;&#x53D1;&#x9001;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#xFF0C;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x4E86;&#x4E24;&#x6B21;&#x6570;&#x636E;&#x590D;&#x5236;</p>
+<p>&#x800C;&#x57FA;&#x4E8E;<code>bpf_ringbuf</code>&#xFF0C;&#x4F7F;&#x7528;<code>reservatiobn\submit</code>&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>reserve</code>&#x8FDB;&#x884C;&#x7A7A;&#x95F4;&#x7684;&#x9884;&#x7559;&#xFF0C;&#x7136;&#x540E;bpf&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5BF9;data sample&#x8FDB;&#x884C;&#x4F20;&#x8F93;</p>
+<h2 id="performance-and-applicability">Performance and applicability</h2>
+<p>&#x867D;&#x7136;<code>bpf_perfbuf</code>&#x7531;&#x4E8E;cpu&#x4E4B;&#x95F4;&#x7684;&#x9694;&#x79BB;&#x6027;&#x7406;&#x8BBA;&#x4E0A;&#x5177;&#x6709;&#x66F4;&#x597D;&#x7684;&#x5E76;&#x53D1;&#x6027;&#x80FD;&#xFF0C;&#x4F46;&#x8FD9;&#x4E2A;&#x9AD8;&#x541E;&#x5410;&#x91CF;&#x4EC5;&#x5177;&#x6709;&#x7406;&#x8BBA;&#x610F;&#x4E49;</p>
+<p><a href="https://patchwork.ozlabs.org/project/netdev/patch/20200529075424.3139988-5-andriin@fb.com/" target="_blank">https://patchwork.ozlabs.org/project/netdev/patch/20200529075424.3139988-5-andriin@fb.com/</a></p>
+<p>&#x6839;&#x636E;&#x5B9E;&#x9645;&#x7684;&#x57FA;&#x51C6;&#x6D4B;&#x8BD5;&#xFF0C;<code>ring_buff</code>&#x5728;&#x4EFB;&#x4F55;&#x60C5;&#x51B5;&#x90FD;&#x662F;&#x66F4;&#x597D;&#x7684;&#xFF0C;&#x8FD9;&#x548C;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x7684;&#x4E8B;&#x4EF6;&#x5206;&#x53D1;&#x8DEF;&#x5F84;&#x6709;&#x5173;&#xFF0C;<code>bpf_ring_buff</code>&#x59CB;&#x7EC8;&#x662F;&#x66F4;&#x597D;&#x7684;&#x4E0A;&#x4F4D;&#x66FF;&#x4EE3;</p>
+<p>&#x4EC5;&#x6709;&#x7684;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#x662F;&#xFF0C;&#x5F53;bpf&#x7A0B;&#x5E8F;&#x5FC5;&#x987B;&#x4ECE;<code>NMI(non-maskable interrupt)</code>&#x8FD9;&#x6837;&#x7684;&#x4E0D;&#x53EF;&#x5C4F;&#x853D;&#x4E2D;&#x65AD;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x8FD0;&#x884C;&#xFF0C;&#x4F8B;&#x5982;&#x68C0;&#x6D4B;<code>cpu-cycles</code>&#xFF0C;&#x7531;&#x4E8E;BPF&#x7684;<code>ring_buff</code>&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x8F7B;&#x91CF;&#x7684;<code>spin-lock</code>,&#x5373;&#x4FBF;<code>ring_buff</code>&#x672C;&#x8EAB;&#x4F9D;&#x7136;&#x6709;&#x7A7A;&#x95F4;&#xFF0C;&#x4F46;&#x4ECD;&#x7136;&#x4F1A;&#x56E0;&#x4E3A;&#x9AD8;&#x4E89;&#x7528;&#x5BFC;&#x81F4;&#x6570;&#x636E;&#x4E22;&#x5931;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="BPF_program.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: BPF_programs">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"BPF_ring_buffer","level":"1.5.11","depth":2,"previous":{"title":"BPF_programs","level":"1.5.10","depth":2,"path":"gitbook/BPF_program.md","ref":"gitbook/BPF_program.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"gitbook/BPF_ring_buffer.md","mtime":"2022-07-12T17:50:35.392Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-12T20:41:14.860Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook.js"></script>
+    <script src="theme.js"></script>
+    
+        
+        <script src="gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
