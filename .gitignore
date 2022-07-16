@@ -1,0 +1,4 @@
+vmlinux.h
+build/**
+doc/_book
+.vscode
