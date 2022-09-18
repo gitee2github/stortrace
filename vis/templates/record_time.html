@@ -1,0 +1,78 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+<script type="text/javascript">
+ var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+var option;
+var tp_data = [];
+var x_data = '{{ x_data }}'.split(',');
+var y_data = '{{ y_data }}'.split(',');
+var index_data = '{{ index_data }}'.split(',');
+var plot_data = []
+for(let i = 0;i<x_data.length;i++){
+    plot_data.push([x_data[i],y_data[i]]);
+}
+option = {
+  title: {
+    text: '{{ title }}',
+    subtext: '{{ mode }}'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  , formatter: function (p) {
+      var format = "Index:"+p[0].dataIndex+"</br>";
+      format += " record time "+p[0].data[0]+" ns</br>";
+      format += " event sum cost "+ p[0].data[1]+" ns";
+      return format
+  }
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '{value} ns'
+    }
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '{value} ns'
+    }
+  },
+  series: [
+    {
+      symbolSize: 5,
+      data:plot_data,
+      type: 'scatter'
+    }
+  ]
+};
+if (option && typeof option === 'object') {
+      myChart.setOption(option);
+}
+
+window.addEventListener('resize', myChart.resize);
+</script>
+</body>
+</html>

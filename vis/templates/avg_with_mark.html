@@ -1,0 +1,126 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    var plot_name = '{{ graph_name }}'
+    var plot_data = '{{ data }}'.split(" ");
+    var xAxisData = [];
+    for(let i=0;i<plot_data.length;i++){
+        xAxisData.push(i);
+    }
+    option = {
+  title: {
+    text: plot_name
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross'
+    }
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: xAxisData
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '{value}'
+    },
+    axisPointer: {
+      snap: true
+    }
+  },
+  visualMap: {
+    show: false,
+    dimension: 0,
+    pieces: [
+      {
+        lte: 6,
+        color: 'green'
+      },
+      {
+        gt: 6,
+        lte: 8,
+        color: 'red'
+      },
+      {
+        gt: 8,
+        lte: 14,
+        color: 'green'
+      },
+      {
+        gt: 14,
+        lte: 17,
+        color: 'red'
+      },
+      {
+        gt: 17,
+        color: 'green'
+      }
+    ]
+  },
+  series: [
+    {
+      name: '{{ graph_name }}',
+      type: 'line',
+      smooth: true,
+      // prettier-ignore
+      data: plot_data,
+      markArea: {
+        itemStyle: {
+          color: 'rgba(255, 173, 177, 0.4)'
+        },
+        data: [
+          [
+            {
+              name: 'Morning Peak',
+              xAxis: 0,
+            },
+            {
+              xAxis: 5,
+            }
+          ],
+          [
+            {
+              name: 'Evening Peak',
+              xAxis: 90,
+            },
+            {
+              xAxis: 95
+            }
+          ]
+        ]
+      }
+    }
+  ]
+};
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

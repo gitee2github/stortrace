@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+	
+	<style type="text/css">
+			 ul{
+			 	margin: 30px auto;
+				 width: 1200px;
+				 height: 350px;
+				padding: 0px;
+				
+			}
+			li{
+				list-style-type: none;
+				float: left;
+			}
+			a{
+				display: block;
+				width: 500px;
+				height: 50px;
+				font-family: Microsoft Yahei;
+				line-height: 50px;
+				background-color: rgb(42, 52, 191);
+				margin: 0px 0px;
+				color: #fff;
+				text-align: center;
+				text-decoration: none;
+				font-size: 15px;
+			}
+			a:hover{
+				background-color: #ffff00;
+			}
+		</style>
+	
+	
+</head>
+<body>
+	<div >
+			<ul class=direction>
+				<h1>blk_trace_mode</h1>
+				<h2>IO per sampling interval--replace blktrace <strong>Q2Q</strong></h2>
+				<h3>每个采样区间IO执行的数量</h3>
+				<h3>x_axis: 时间 以采样区间PMC为单位</h3>
+				<h3>y_axis: 对应采样区间IO执行的数量</h3>
+				<a href="/io_per_pmc">io_per_pmc</a></br>
+
+				<h2>Merged rate per sampling interval--replace blktrace <strong>Q2M</strong></h2>
+				<h3>每个采样区间,被合并的IO在全部下发IO的占比</h3>
+				<h3>x_axis: 时间 以采样区间PMC为单位</h3>
+				<h3>y_axis: 应采样区间被合并的IO在全部下发IO的占比</h3>
+				<a href="/blk_merge_rate">blk_merge_rate</a></br>
+
+				<h2>IO drive locality visualization</h2>
+				<h3>IO在硬件层的落盘局部性可视化</h3>
+				<h3>x->y 左向右代表连续的物理块 换行无意义</h3>
+				<a onclick="blk_heatmap_index(this)">blk_heatmap(required length of row)</a></br>
+                <textarea rows="1" cols="40" id="blk_heatmap_length">row size of heatmap, recommod 8</textarea>
+                <script>
+                function blk_heatmap_index(element) {
+                    var count=document.getElementById("blk_heatmap_length").value;
+                    window.location.href = "/blk_heatmap/"+count;
+                }
+                </script>
+
+				<h2>Stage latency</h2>
+				<h3>[1]IO在block层各阶段延迟随时间变化情况</h3>
+				<h3>x_axis: 时间 以采样区间PMC为单位</h3>
+				<h3>y_axis: 延迟平均值 以采样区间PMC为单位</h3>
+
+				<h3>[2]IO在block层各阶段延迟时间在整个trace过程的分布情况</h3>
+				<h3>x_axis: 区间 对延迟[min,max]100等分</h3>
+				<h3>y_axis: 计数 延迟归属此区间的IO数量</h3>
+				
+				<h3>Detectable stage:</h3>
+				<h3>sum--replace blktrace <strong>Q2C</strong></h3>
+				<a href="/query_avg/sum">sum_avg</a></br>
+				<a href="/query_dis/sum">sum_distribution</a></br>
+
+				<h3>alloc_request--replace blktrace <strong>Q2G</strong></h3>
+				<a href="/query_avg/alloc_request">alloc_request_avg</a></br>
+				<a href="/query_dis/alloc_request">alloc_request_distribution</a></br>
+
+				<h3>plug--subdivision blktrace <strong>G2I</strong></h3>
+				<a href="/query_avg/plug">plug_avg</a></br>
+				<a href="/query_dis/plug">plug_distribution</a></br>
+
+
+				<h3>scheduling--replace blktrace <strong>I2D</strong></h3>
+				<a href="/query_avg/scheduling">scheduling_avg</a></br>
+				<a href="/query_dis/scheduling">scheduling_distribution</a></br>
+
+				<h3> <strong>Nvme drive: </strong>, dispatach--replace blktrace <strong>G2D</strong></h3>
+				<h3> <strong>Scsi drive: </strong>, dispatach--subdivision blktrace <strong>I2D</strong></h3>
+				<a href="/query_avg/dispatch">dispatch_avg</a></br>
+				<a href="/query_dis/dispatch">dispatch_distribution</a></br>
+
+
+				<h3>drive_exec--replace blktrace <strong>Q2C</strong></h3>
+				<a href="/query_avg/nvme_exec">nvme_exec_avg</a></br>
+				<a href="/query_dis/nvme_exec">nvme_exec_distribution</a></br>
+				<a href="/query_avg/scsi_exec">scsi_exec_avg</a></br>
+				<a href="/query_dis/scsi_exec">scsi_exec_distribution</a></br>
+
+				<h3>drive_verify--replace blktrace <strong>Q2C</strong></h3>
+				<a href="/query_avg/nvme_verify">nvme_verify_avg</a></br>
+				<a href="/query_dis/nvme_verify">nvme_verify_distribution</a></br>
+				<a href="/query_avg/scsi_verify">scsi_verify_avg</a></br>
+				<a href="/query_dis/scsi_verify">scsi_verify_distribution</a></br>
+			</ul>
+		</div>
+</body>
+</html>

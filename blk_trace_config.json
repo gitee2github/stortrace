@@ -1,0 +1,22 @@
+{
+    "name":"blk_trace_demo",
+    "event_type":"blk",
+    "trace_level":"info",
+    "logger_io_uring_depth":32,
+    "select_target":{
+        "pid":-1,
+        "common":"",
+        "files":[]
+    },
+    "filter":{
+        "enable":false,
+        "quantile":99.95,
+        "filter_accuracy":30,
+        "stage":"block_io"
+    },
+    "statistical_params":{
+        "pmc_inv":1000,
+        "heatmap_row":20
+    },
+    "show_bpf_internal":false
+}
