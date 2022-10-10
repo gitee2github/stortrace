@@ -1,0 +1,100 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+<script type="text/javascript">
+ var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var data = [];
+var data1 = [];
+for (let i = 1; i < 20000; i++) {
+  let now = i;
+  data.push([now, 30]);
+  data1.push([now,60]);
+}
+option = {
+  tooltip: {
+    trigger: 'axis',
+    formatter: function (p) {
+      var format = "Time:"+p[0].data[0]+"</br>";
+      for(var i =0;i<p.length;i++){
+        format += p[i].marker+" "+p[i].seriesName+": "+p[i].data[1]+"</br>";
+      }
+      return format
+    }
+  },
+   visualMap: {
+    min: 0,
+    max: 100,
+    calculable: true,
+    orient: 'vertical',
+    left: '0%',
+    bottom: '50%'
+  },
+  title: {
+    left: 'center',
+    text: 'Hctx request using'
+  },
+  toolbox: {
+    feature: {
+      dataZoom: {
+        yAxisIndex: 'none'
+      },
+      restore: {},
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: false
+  },
+  yAxis: {
+    type: 'value',
+    boundaryGap: false
+  },
+  dataZoom: [
+    {
+      type: 'inside',
+      start: 0,
+      end: 20
+    },
+    {
+      start: 0,
+      end: 20
+    }
+  ],
+  series: [
+    {
+      name: 'Fake Data',
+      type: 'line',
+      smooth: true,
+      symbol: 'none',
+      data: data1
+    },
+    {
+      name: 'Fake Data2',
+      type: 'line',
+      smooth: true,
+      symbol: 'none',
+      data: data
+    }
+  ]
+};
+if (option && typeof option === 'object') {
+      myChart.setOption(option);
+}
+
+window.addEventListener('resize', myChart.resize);
+</script>
+</body>
+</html>

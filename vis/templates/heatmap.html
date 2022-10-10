@@ -1,0 +1,103 @@
+  <!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+<script type="text/javascript">
+ var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+var max_ = 0;
+var seq_str = '{{ seq_data }}'.split(",");
+var length = parseInt('{{ length }}');
+console.log(length)
+var height = parseInt('{{ height }}');
+console.log(height)
+var sector_data = [];
+for(let i = 0;i<height;i++){
+    for(let j = 0;j<length;j++){
+        var value = parseInt(seq_str[i*length+j])
+        if(value > max_){
+            max_ = value;
+        }
+        sector_data.push([j,i,value]);
+    };
+};
+const data = sector_data
+    .map(function (item) {
+    return [item[0], item[1], item[2]];
+});
+option = {
+  tooltip: {
+    position: 'top',
+    formatter: function (p) {
+      var format = p.marker+"Partition index:"+p.dataIndex +"</br>";
+      format += "Accumulation:"+p.data[2]+"</br>";
+      return format
+    }
+  },
+  title:
+    {
+      left: 'center',
+      text: '{{drive}}'
+    },
+  grid: {
+    height: '50%',
+    top: '10%'
+  },
+  xAxis: {
+    type: 'category',
+    data: [],
+    splitArea: {
+      show: true
+    }
+  },
+  yAxis: {
+    type: 'category',
+    data: [],
+    splitArea: {
+      show: true
+    }
+  },
+  visualMap: {
+    min: 0,
+    max: max_,
+    calculable: true,
+    orient: 'horizontal',
+    left: 'center',
+    bottom: '15%'
+  },
+  series: [
+    {
+      name: '{{ drive }}',
+      type: 'heatmap',
+      data: data,
+      label: {
+        show: false
+      },
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 100,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+
+window.addEventListener('resize', myChart.resize);
+</script>
+</body>
+</html>

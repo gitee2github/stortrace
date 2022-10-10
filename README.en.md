@@ -25,7 +25,10 @@ Software architecture description
 3.  Commit your code
 4.  Create Pull Request
 
+sysbench /usr/share/sysbench/oltp_common.lua --time=30 --mysql-host=127.0.0.1 --mysql-port=3306 --mysql-user=root --mysql-password= --mysql-db=sbtest --table-size=10000 --tables=10 --threads=16 prepare
 
+
+sysbench /usr/share/sysbench/oltp_read_write.lua --time=300 --mysql-host=127.0.0.1 --mysql-port=3306 --mysql-user=root --mysql-password= --mysql-db=sbtest --table-size=10000 --tables=10 --threads=16 --report-interval=10  run
 #### Gitee Feature
 
 1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md

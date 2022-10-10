@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* SPDX-License-Identifier: (LGPL-2.1 OR BSD-2-Clause) */
 /* Copyright (c) 2020 Andrii Nakryiko */
 #ifndef __COMMON_H
@@ -30,3 +31,13 @@ struct event {
 };
 
 #endif /* __COMMON_H */
+=======
+// Setup Argument stuff
+#pragma once
+#ifndef _COMMON_H_
+#define _COMMON_H_
+#define TASK_COMM_LEN 16
+#define TEST_STACK_DEPTH 10
+typedef long long unsigned int time_stramp;
+#endif
+>>>>>>> 6cd684f (finish dio and blk_trace,still bug)

@@ -1,0 +1,90 @@
+  <!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+<script type="text/javascript">
+ var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    var type_data_str = '{{ data }}'.split(" ");
+    var types = '{{ type }}'.split(",");
+    var type_data = [];
+    var commons_data = type_data_str[3].split(",")
+    var files_data = type_data_str[4].split(",")
+    for(let i = 0;i<3;i++){
+        type_data.push(
+        {
+        name: types[i],
+        type: 'bar',
+        stack: 'total',
+        label: {
+          show: false
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: type_data_str[i].split(",")
+        }
+        );
+    }
+    var option;
+    option = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        // Use axis to trigger tooltip
+        type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+      },
+      formatter: function (p) {
+      var format = "Index:"+p[0].axisValue+"</br>";
+      format += "Common: "+commons_data[p[0].axisValue]+"</br>";
+      format += "Files: "+files_data[p[0].axisValue]+"</br>";
+      for(var i =0;i<p.length;i++){
+        format += p[i].marker+" "+p[i].seriesName+": "+p[i].value+"ns </br>";
+      }
+      return format
+    }
+    },
+    legend: {},
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: {}
+    }
+    },
+    xAxis: {
+      type: 'value'
+    },
+    yAxis: {
+      type: 'category'
+    },
+    series: type_data
+  };
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+myChart.on('click',function(p){
+  var Index = p.dataIndex;
+  window.location.href = "/query_flow/"+Index;
+});
+
+window.addEventListener('resize', myChart.resize);
+</script>
+</body>
+</html>

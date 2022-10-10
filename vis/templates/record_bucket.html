@@ -1,0 +1,75 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+<script type="text/javascript">
+ var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+var option;
+var xAxisData = [];
+var value = '{{ bucket }}'.split(",");
+for(let i=0;i<value.length;i++){
+    xAxisData.push(i);
+}
+option = {
+  title: {
+    text: '{{ title }}',
+    subtext: '{{ mode }}'
+  },
+  legend: {
+    data: ['Record_count']
+  },
+  toolbox: {
+    // y: 'bottom',
+    feature: {
+      magicType: {
+        type: ['stack']
+      },
+      dataView: {},
+      saveAsImage: {
+        pixelRatio: 2
+      }
+    }
+  },
+  tooltip: {},
+  xAxis: {
+    data: xAxisData,
+    splitLine: {
+      show: false
+    }
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: {}
+    }
+    },
+  yAxis: {},
+  series:{
+      name: 'Record_count',
+      type: 'bar',
+      data: value,
+      emphasis: {
+        focus: 'series'
+      }
+    }
+};
+if (option && typeof option === 'object') {
+      myChart.setOption(option);
+}
+
+window.addEventListener('resize', myChart.resize);
+</script>
+</body>
+</html>

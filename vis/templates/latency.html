@@ -1,0 +1,155 @@
+  <!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+<script type="text/javascript">
+ function arrayChunk(array,size){
+  let chunk_data = []
+  for(let i = 0;i<array.length;i += size){
+    chunk_data.push(array.slice(i,i+size))
+  }
+  return chunk_data;
+}
+
+
+const Pages = [];
+var options = [];
+var type_data_str = '{{ data }}'.split(" ");
+var obj = {
+    "stage0":type_data_str[0].split(","),
+    "stage1":type_data_str[1].split(","),
+    "stage2":type_data_str[2].split(","),
+    "commons_data":type_data_str[3].split(","),
+    "files_data":type_data_str[4].split(",")
+}
+
+var split_len = parseInt("{{ split_count }}");
+console.log(split_len);
+var commons_Arr = arrayChunk(obj.commons_data,split_len);
+var files_Arr = arrayChunk(obj.files_data,split_len);
+var type_data_Arr = [arrayChunk(obj.stage0,split_len),arrayChunk(obj.stage1,split_len),arrayChunk(obj.stage2,split_len)];
+for(var j =0;j<commons_Arr.length;j++){
+    Pages.push(j)
+}
+for(var index = 0;index<Pages.length;index++){
+    var types = '{{ type }}'.split(",");
+    var type_data = [];
+    var commons_data = commons_Arr[index];
+    var files_data = files_Arr[index];
+    var metas = [];
+    for(let i = 0;i<commons_data.length;i++){
+        metas.push(commons_data[i]+" "+files_data[i]);
+    }
+    for(let i = 0;i<3;i++){
+        type_data.push(
+        {
+        name: types[i],
+        type: 'bar',
+        stack: 'total',
+        label: {
+          show: false
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data:type_data_Arr[i][index]
+        }
+        );
+    }
+    var option;
+    option = {
+    title:{
+      left: 'left',
+      text: index
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        // Use axis to trigger tooltip
+        type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+      },
+      formatter: function (p) {
+      var temp = p[0].axisValue.split(" ");
+      var format = "";
+      format += "Common: "+temp[0]+"</br>";
+      format += "Files: "+temp[1]+"</br>";
+      for(var i =0;i<p.length;i++){
+        format += p[i].marker+" "+p[i].seriesName+": "+p[i].value+"ns </br>";
+      }
+      return format
+    }
+    },
+    legend: {},
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: {}
+    }
+    },
+    xAxis: {
+      type: 'value'
+    },
+    yAxis: {
+      type:'category',
+      data: metas,
+      show:false,
+      axisLabel : {
+                formatter: function(){
+                    return "";
+                }
+    }
+    },
+    series: type_data
+  };
+  options.push(option);
+}
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+
+var num = 0;
+var option = {
+      timeline: {
+        data: Pages,
+        axisType: 'category',
+        realtime: true,
+        label: {
+          formatter: function (s) {
+            return s;
+          }
+        },
+        symbolSize: 14,
+        autoPlay: false,
+        playInterval: 1000,
+        tooltip: {
+          formatter: function (s) {
+            num = s.dataIndex;
+            return s.dataIndex + 1;
+          }
+        }
+      },
+      options: options,
+    };
+   
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+window.addEventListener('resize', myChart.resize);
+</script>
+</body>
+</html>
